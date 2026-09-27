@@ -413,3 +413,54 @@
   display: inline-block;
   background: var(--sw);
 }
+
+/* ----- chrome: progress bar + slide pager ------------------------ */
+.lfds-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 2px;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.lfds-progress-bar {
+  height: 100%;
+  background: var(--foreground);
+  transform-origin: left center;
+  transition: transform 0.35s ease;
+}
+
+.lfds-pager {
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.1rem;
+  z-index: 200;
+  display: inline-flex;
+  gap: 0.32rem;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.lfds-pager-current {
+  color: var(--foreground);
+}
+
+.lfds-pager-sep {
+  opacity: 0.5;
+}
+
+/* in print/export the layers render inside each slide page, so anchor
+   to the page instead of the viewport */
+.lfds-progress.is-print,
+.lfds-pager.is-print {
+  position: absolute;
+}
+
+.lfds-pager.is-print {
+  right: 3rem;
+  bottom: 2rem;
+}

@@ -81,6 +81,15 @@ styled by LFDS.
 <Kicker>section 01</Kicker> <Tag>new</Tag>
 ```
 
+## Chrome
+
+Two global layers ship with the theme:
+
+- **progress bar** — pinned to the very top of the slide (`.lfds-progress`)
+- **slide pager** — `03 / 11`, bottom-right, hidden on the `cover`, `intro` and `end` layouts (`.lfds-pager`)
+
+Both anchor to the viewport when presenting and to each slide page when exporting.
+
 ## Utilities
 
 `.link` (dashed underline) · `.cta` · `.kicker` · `.label` · `.tag` ·

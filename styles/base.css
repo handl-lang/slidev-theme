@@ -288,7 +288,5 @@ section {
   background: transparent !important;
 }
 
-/* progress bar */
-#slidev-progress {
-  background: var(--foreground) !important;
-}
+/* progress bar + pager are provided by the theme's global layers
+   (see global-top.vue / global-bottom.vue and .lfds-progress/.lfds-pager) */
