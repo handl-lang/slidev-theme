@@ -2,11 +2,25 @@
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
 
-const { currentPage, total, currentLayout, isPrintMode } = useNav()
+const { slides, currentSlideNo, currentLayout, isPrintMode } = useNav()
 
-const hidden = computed(() =>
-  ['cover', 'intro', 'end'].includes(String(currentLayout.value)),
+// slides marked `backup: true` are appendix material and don't count
+const isBackup = (route: any) => route?.meta?.slide?.frontmatter?.backup === true
+
+const mainNos = computed(() =>
+  (slides.value ?? []).filter(r => !isBackup(r)).map(r => r.no),
 )
+const total = computed(() => mainNos.value.length || 1)
+const current = computed(() => {
+  const i = mainNos.value.indexOf(currentSlideNo.value)
+  return i === -1 ? total.value : i + 1
+})
+
+const hidden = computed(() => {
+  const route = slides.value?.find(r => r.no === currentSlideNo.value)
+  return isBackup(route)
+    || ['cover', 'intro', 'end'].includes(String(currentLayout.value))
+})
 
 const pad = (n: number) => String(n).padStart(2, '0')
 </script>
@@ -18,7 +32,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
     :class="{ 'is-print': isPrintMode }"
     aria-hidden="true"
   >
-    <span class="lfds-pager-current">{{ pad(currentPage) }}</span>
+    <span class="lfds-pager-current">{{ pad(current) }}</span>
     <span class="lfds-pager-sep">/</span>
     <span class="lfds-pager-total">{{ pad(total) }}</span>
   </div>

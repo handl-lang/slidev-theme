@@ -90,6 +90,16 @@ Two global layers ship with the theme:
 
 Both anchor to the viewport when presenting and to each slide page when exporting.
 
+Slides marked `backup: true` are treated as appendix material — they are
+excluded from the pager's total and the pager is hidden on them:
+
+```yaml
+---
+layout: default
+backup: true
+---
+```
+
 ## Utilities
 
 `.link` (dashed underline) · `.cta` · `.kicker` · `.label` · `.tag` ·

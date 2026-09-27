@@ -2,11 +2,21 @@
 import { useNav } from '@slidev/client'
 import { computed } from 'vue'
 
-const { currentPage, total, isPrintMode } = useNav()
+const { slides, currentSlideNo, isPrintMode } = useNav()
 
-const progress = computed(() =>
-  total.value <= 0 ? 0 : currentPage.value / total.value,
+// slides marked `backup: true` are appendix material and don't count
+const isBackup = (route: any) => route?.meta?.slide?.frontmatter?.backup === true
+
+const mainNos = computed(() =>
+  (slides.value ?? []).filter(r => !isBackup(r)).map(r => r.no),
 )
+const total = computed(() => mainNos.value.length || 1)
+const current = computed(() => {
+  const i = mainNos.value.indexOf(currentSlideNo.value)
+  return i === -1 ? total.value : i + 1
+})
+
+const progress = computed(() => current.value / total.value)
 </script>
 
 <template>
