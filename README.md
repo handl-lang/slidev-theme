@@ -61,6 +61,11 @@ styled by LFDS.
 - **`<Kicker>`** — a mono, uppercase, letter-spaced label.
 - **`<Cta>`** — the bracketed `[ LABEL ]` treatment.
 - **`<Tag>`** — a small squared tag (inherits its colour).
+- **`<Callout>`** — an augmented (cut-corner) alert.
+- **`<Pipeline :stages="[…]" />`** — an animated stage flow with drawn arrows.
+- **`<Steps :items="[{ title, body }]" />`** — a numbered timeline revealed step by step.
+- **`<Bars :items="[{ label, value, display }]" />`** — animated benchmark bars.
+- **`<Stat value label />`** — a big Roboto Flex numeral with a mono caption.
 
 ```md
 <AugFrame>
@@ -79,8 +84,10 @@ styled by LFDS.
 ## Utilities
 
 `.link` (dashed underline) · `.cta` · `.kicker` · `.label` · `.tag` ·
-`.panel` · `.aug-frame` · `.invert` · `.numeral` · `.cols` / `.cols-3` ·
-`.muted` · `.mono` · `.display` · `.footnote` · `.swatches` / `.swatch`
+`.panel` · `.aug-frame` · `.callout` · `.invert` · `.numeral` · `.stat` ·
+`.pipeline` · `.steps-v` · `.bars` · `.cols` / `.cols-3` · `.muted` ·
+`.mono` · `.display` · `.footnote` · `.cursor` (blinking) · `.pulse` ·
+`.swatches` / `.swatch`
 
 ## Design tokens
 

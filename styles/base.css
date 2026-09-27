@@ -139,6 +139,7 @@ section {
   margin: 0.36rem 0;
 }
 
+/* `currentColor` so markers stay legible on inverted (foreground-filled) frames */
 .slidev-layout ul > li::before {
   content: '';
   position: absolute;
@@ -146,7 +147,7 @@ section {
   top: 0.66em;
   width: 0.5rem;
   height: 0.5rem;
-  background: var(--foreground);
+  background: currentColor;
 }
 
 .slidev-layout ol {
@@ -190,14 +191,23 @@ section {
   font-family: var(--font-mono);
 }
 
-/* blockquote */
+/* blockquote — an augmented (cut-corner) alert, never rounded */
 .slidev-layout blockquote {
   margin: 0.7rem 0;
-  padding: 0.7rem 1.1rem;
-  border-left: 2px solid var(--foreground);
+  padding: 0.8rem 1.1rem;
+  border: 0;
+  border-radius: 0;
   background: var(--background-secondary);
   color: var(--foreground);
   font-weight: 300;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% 100%,
+    12px 100%,
+    0 calc(100% - 12px)
+  );
 }
 
 .slidev-layout blockquote > p {

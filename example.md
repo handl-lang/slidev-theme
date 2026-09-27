@@ -118,6 +118,51 @@ Foreground fill, background text.
 </div>
 
 ---
+layout: default
+---
+
+# Data & flow
+
+<div class="cols-3" style="gap:2.4rem; margin-bottom:1.5rem">
+<Stat value="2·log₂T" label="scan depth" />
+<Stat value="260×" label="streaming attention" />
+<Stat value="O(1)" label="state per KV block" />
+</div>
+
+<Pipeline :stages="['model', 'typed IR', 'e-graph', 'extract', 'verify', 'lower']" />
+
+<div style="margin-top:1.6rem">
+<Bars :items="[{ label: 'projection pairing', value: 1.24, display: '1.24×' }, { label: 'attention fold', value: 4.6, display: '4.6×' }, { label: 'reassociation', value: 8, display: '8.0×' }, { label: 'weights-first fold', value: 15.9, display: '15.9×' }, { label: 'streaming attention', value: 260, display: '260×' }]" />
+</div>
+
+---
+layout: default
+---
+
+# Steps & callout
+
+<div class="cols">
+<div>
+
+<Steps :items="[{ title: 'Input', body: 'a real block' }, { title: 'Search', body: 'equivalent programs' }, { title: 'Measure', body: 'against the baseline' }, { title: 'Inspect', body: 'why it wins' }]" />
+
+</div>
+<div>
+
+<Callout>
+
+An augmented alert — cut corners, never rounded.
+
+</Callout>
+
+<p style="margin-top:1rem">
+Markdown <code>&gt;</code> blockquotes share the same cut-corner shape.
+</p>
+
+</div>
+</div>
+
+---
 layout: two-cols
 ---
 
