@@ -1,0 +1,249 @@
+/* ------------------------------------------------------------------
+   LFDS — base layer
+   Global rules ported from the source `@layer base`, plus the slide
+   typography the theme layers on top of `layouts-base.css`.
+   ------------------------------------------------------------------ */
+
+*,
+::before,
+::after {
+  border-color: var(--border);
+  transition: clip-path 300ms ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 132px;
+}
+
+/* selection */
+::selection {
+  background: var(--accent);
+  color: var(--background);
+  fill: var(--background);
+}
+
+/* focus — sharp accent outline, squared corners */
+.slidev-layout *:focus {
+  outline: 1px solid var(--accent);
+  outline-offset: -1px;
+  border-radius: 0;
+  transition: none;
+}
+
+/* scrollbar (firefox) */
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--foreground) var(--background);
+  }
+}
+
+/* ------------------------------------------------------------------
+   slide surface + typography
+   ------------------------------------------------------------------ */
+
+.slidev-layout {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.55;
+  padding: 2.2rem 3rem;
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+}
+
+.slidev-layout h1 {
+  font-size: 2.7rem;
+  margin-bottom: 0.55em;
+}
+
+.slidev-layout h2 {
+  font-size: 2rem;
+  margin-bottom: 0.4em;
+}
+
+.slidev-layout h3 {
+  font-size: 1.45rem;
+}
+
+.slidev-layout h4 {
+  font-size: 1.18rem;
+}
+
+.slidev-layout h5 {
+  font-size: 1rem;
+}
+
+.slidev-layout h6 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  opacity: 0.55;
+}
+
+.slidev-layout p {
+  margin: 0.5em 0;
+}
+
+.slidev-layout strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.dark .slidev-layout strong {
+  color: var(--white);
+}
+
+.slidev-layout em {
+  color: var(--foreground-secondary);
+  font-style: italic;
+}
+
+/* links */
+.slidev-layout a {
+  color: var(--link-primary);
+  text-decoration: none;
+}
+
+/* lists — terminal markers */
+.slidev-layout ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.4rem 0;
+}
+
+.slidev-layout ul > li {
+  position: relative;
+  padding-left: 1.35rem;
+  margin: 0.36rem 0;
+}
+
+.slidev-layout ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.66em;
+  width: 0.5rem;
+  height: 0.5rem;
+  background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.slidev-layout ol {
+  padding-left: 1.3rem;
+}
+
+.slidev-layout ol > li::marker {
+  color: var(--accent);
+  font-family: var(--font-mono);
+}
+
+.slidev-layout li > ul,
+.slidev-layout li > ol {
+  margin: 0.2rem 0;
+}
+
+/* code */
+.slidev-layout code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.slidev-layout :not(pre) > code {
+  background: var(--background-secondary);
+  border: 1px solid var(--edge);
+  border-radius: var(--radius-sm);
+  padding: 0.08em 0.36em;
+  color: var(--foreground-secondary);
+}
+
+.slidev-layout pre.slidev-code,
+.slidev-layout .slidev-code-wrapper > pre {
+  background: var(--code-bg) !important;
+  border: 1px solid var(--edge);
+  border-radius: var(--radius-md);
+}
+
+.slidev-layout .slidev-code {
+  font-family: var(--font-mono);
+}
+
+/* blockquote */
+.slidev-layout blockquote {
+  margin: 0.7rem 0;
+  padding: 0.7rem 1.1rem;
+  border-left: 2px solid var(--accent);
+  background: var(--background-secondary);
+  color: var(--foreground);
+}
+
+.slidev-layout blockquote > p {
+  margin: 0;
+}
+
+/* tables */
+.slidev-layout table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+}
+
+.slidev-layout th,
+.slidev-layout td {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--edge);
+  text-align: left;
+}
+
+.slidev-layout thead th {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--background-secondary);
+  color: var(--foreground-secondary);
+}
+
+.slidev-layout tbody tr:nth-child(even) {
+  background: color-mix(in srgb, var(--foreground) 4%, transparent);
+}
+
+/* horizontal rule */
+.slidev-layout hr {
+  border: 0;
+  border-top: 1px solid var(--edge);
+  margin: 1.2rem 0;
+}
+
+/* katex / mermaid harmony */
+.slidev-layout .katex {
+  color: var(--foreground);
+}
+
+.slidev-layout .mermaid {
+  background: transparent !important;
+}
+
+/* progress bar */
+#slidev-progress {
+  background: var(--accent) !important;
+}

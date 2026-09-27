@@ -1,0 +1,160 @@
+/* ------------------------------------------------------------------
+   LFDS — design tokens
+   Ported from the Tailwind v4 `@theme` / `:root` / `.dark` source.
+   Slidev toggles `html.dark`, so the `.dark` block mirrors the source.
+   ------------------------------------------------------------------ */
+
+:root {
+  /* ----- typography ----- */
+  --font-display: 'Roboto Condensed', sans-serif;
+  --font-sans: 'Roboto', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+  --font-flex: 'Roboto Flex', sans-serif;
+
+  /* ----- radii ----- */
+  --radius: 0.625rem;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* ----- augmented-ui ----- */
+  --aug-size: 32px;
+
+  /* ----- light theme ----- */
+  --black: #000000;
+  --white: #ffffff;
+  --blue: #0000b3;
+  --cyan: #00b3b3;
+  --green: #00b300;
+  --magenta: #b300b3;
+  --red: #b30000;
+  --yellow: #b3b300;
+  --orange: #ff7700;
+  --gray-1: #ddd;
+  --gray-2: #aaa;
+  --gray-3: #888;
+
+  --background: var(--white);
+  --foreground: var(--blue);
+  --background-secondary: var(--gray-1);
+  --foreground-secondary: var(--cyan);
+
+  --primary: var(--blue);
+  --primary-foreground: var(--white);
+  --secondary: var(--magenta);
+  --secondary-foreground: var(--white);
+  --muted: var(--gray-3);
+  --muted-foreground: var(--white);
+  --accent: var(--orange);
+  --accent-foreground: var(--white);
+  --destructive: var(--red);
+
+  --ring: var(--blue);
+  --border: var(--white);
+
+  --card: var(--gray-1);
+  --card-foreground: var(--blue);
+  --popover: var(--background-secondary);
+  --popover-foreground: var(--foreground);
+  --input: var(--white);
+
+  --chart-1: var(--blue);
+  --chart-2: var(--green);
+  --chart-3: var(--yellow);
+  --chart-4: var(--magenta);
+  --chart-5: var(--red);
+
+  --sidebar: var(--background-secondary);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --link-primary: var(--primary);
+  --link-primary-hover: var(--black);
+
+  /* ----- theme additions ----- */
+  /* a visible hairline for panels/frames (the source `--border` equals the
+     background on purpose, so edges are drawn with this instead) */
+  --edge: var(--gray-2);
+  --code-bg: #f4f4f4;
+
+  /* Slidev hook */
+  --slidev-theme-primary: var(--primary);
+}
+
+.dark {
+  --black: #000000;
+  --white: #ffffff;
+  --blue: #b3b3ff;
+  --cyan: #b3eeff;
+  --green: #b3ffb3;
+  --magenta: #ffb3ff;
+  --red: #ff0000;
+  --yellow: #eeffb3;
+  --orange: #ff7700;
+  --gray-1: #222;
+  --gray-2: #444;
+  --gray-3: #666;
+
+  --background: var(--black);
+  --foreground: var(--blue);
+  --background-secondary: var(--gray-1);
+  --foreground-secondary: var(--cyan);
+
+  --primary: var(--blue);
+  --primary-foreground: var(--black);
+  --secondary: var(--magenta);
+  --secondary-foreground: var(--black);
+  --muted: var(--gray-3);
+  --muted-foreground: var(--blue);
+  --accent: var(--orange);
+  --accent-foreground: var(--black);
+  --destructive: var(--red);
+
+  --ring: var(--blue);
+  --border: var(--black);
+
+  --card: var(--gray-1);
+  --card-foreground: var(--blue);
+  --popover: var(--background-secondary);
+  --popover-foreground: var(--foreground);
+  --input: var(--black);
+
+  --chart-1: var(--blue);
+  --chart-2: var(--green);
+  --chart-3: var(--yellow);
+  --chart-4: var(--magenta);
+  --chart-5: var(--red);
+
+  --sidebar: var(--background-secondary);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+
+  --link-primary: var(--primary);
+  --link-primary-hover: var(--white);
+
+  --edge: var(--gray-2);
+  --code-bg: #0c0c0c;
+}
+
+@media (width >= 48rem) {
+  :root {
+    --aug-size: 40px;
+  }
+}
+
+@media (width >= 64rem) {
+  :root {
+    --aug-size: 48px;
+  }
+}

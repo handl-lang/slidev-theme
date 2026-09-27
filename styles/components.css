@@ -1,0 +1,178 @@
+/* ------------------------------------------------------------------
+   LFDS — components & utilities
+   ------------------------------------------------------------------ */
+
+/* ----- augmented-ui frame ---------------------------------------- */
+.aug-frame {
+  --aug-tr: 12px;
+  --aug-bl: 12px;
+  --aug-border-all: 1px;
+  --aug-border-bg: var(--edge);
+  --aug-inlay-all: 0px;
+  --aug-inlay-bg: var(--background-secondary);
+  background: var(--background-secondary);
+  padding: 0.95rem 1.15rem;
+}
+
+.aug-frame.accent {
+  --aug-border-bg: var(--accent);
+  --aug-inlay-bg: color-mix(in srgb, var(--accent) 10%, var(--background-secondary));
+}
+
+.aug-frame.secondary {
+  --aug-border-bg: var(--secondary);
+  --aug-inlay-bg: color-mix(in srgb, var(--secondary) 10%, var(--background-secondary));
+}
+
+.aug-frame h4,
+.aug-frame h3 {
+  margin-top: 0;
+}
+
+/* ----- link (dashed underline) ----------------------------------- */
+.link {
+  position: relative;
+  display: inline-block;
+  color: var(--link-primary);
+}
+
+.link::after {
+  content: '';
+  display: block;
+  width: 100%;
+  position: absolute;
+  height: 0;
+  bottom: 1px;
+  left: 0;
+  border-bottom: 1px dashed var(--link-primary);
+  transition: width 0.3s ease;
+}
+
+.link:hover {
+  color: var(--link-primary-hover);
+}
+
+.link:hover::after {
+  border-bottom: 1px dashed var(--link-primary-hover);
+}
+
+/* ----- kicker (uppercase mono label) ----------------------------- */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--foreground-secondary);
+}
+
+.kicker::before {
+  content: '';
+  width: 0.5rem;
+  height: 0.5rem;
+  flex: none;
+  background: var(--accent);
+}
+
+/* ----- tag / chip ------------------------------------------------ */
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--foreground-secondary);
+  border: 1px solid var(--edge);
+  padding: 0.12rem 0.45rem;
+  vertical-align: middle;
+}
+
+.tag.accent {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.tag.secondary {
+  color: var(--secondary);
+  border-color: var(--secondary);
+}
+
+/* ----- panels & grids -------------------------------------------- */
+.panel {
+  border: 1px solid var(--edge);
+  background: var(--background-secondary);
+  padding: 1rem 1.2rem;
+}
+
+.panel.accent {
+  border-color: var(--accent);
+}
+
+.panel.secondary {
+  border-color: var(--secondary);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* ----- text helpers ---------------------------------------------- */
+.muted {
+  color: var(--muted);
+}
+
+.accent-text {
+  color: var(--accent);
+}
+
+.secondary-text {
+  color: var(--secondary);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.display {
+  font-family: var(--font-display);
+}
+
+.footnote {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ----- color swatches (for docs / example) ----------------------- */
+.swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+}
+
+.swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.swatch i {
+  width: 1rem;
+  height: 1rem;
+  display: inline-block;
+  background: var(--sw);
+}
