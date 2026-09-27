@@ -78,9 +78,11 @@
   --link-primary-hover: var(--black);
 
   /* ----- theme additions ----- */
-  /* a visible hairline for panels/frames (the source `--border` equals the
-     background on purpose, so edges are drawn with this instead) */
-  --edge: var(--gray-2);
+  /* The source `--border` equals the background on purpose, so structural
+     hairlines are drawn with `--foreground` (as the site does with
+     `border-foreground`); `--edge-soft` is for code and quiet dividers. */
+  --edge: var(--foreground);
+  --edge-soft: var(--gray-2);
   --code-bg: #f4f4f4;
 
   /* Slidev hook */
@@ -143,7 +145,8 @@
   --link-primary: var(--primary);
   --link-primary-hover: var(--white);
 
-  --edge: var(--gray-2);
+  --edge: var(--foreground);
+  --edge-soft: var(--gray-2);
   --code-bg: #0c0c0c;
 }
 

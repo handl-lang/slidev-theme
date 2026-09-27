@@ -20,8 +20,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(var(--edge) 1px, transparent 1px),
-    linear-gradient(90deg, var(--edge) 1px, transparent 1px);
+    linear-gradient(var(--edge-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--edge-soft) 1px, transparent 1px);
   background-size: 44px 44px;
   opacity: 0.16;
   -webkit-mask-image: radial-gradient(120% 85% at 72% 18%, #000 10%, transparent 72%);
@@ -38,6 +38,7 @@
 .slidev-layout.cover h1,
 .slidev-layout.intro h1 {
   font-size: 3.7rem;
+  font-weight: 500;
   line-height: 1.02;
   letter-spacing: -0.025em;
   margin: 0.35em 0 0.4em;
@@ -46,6 +47,7 @@
 .slidev-layout.cover h1 + p,
 .slidev-layout.intro h1 + p {
   font-size: 1.3rem;
+  font-weight: 300;
   color: var(--foreground-secondary);
   margin-top: -0.2em;
 }
@@ -64,12 +66,14 @@
 
 .slidev-layout.section h1 {
   font-size: 3.2rem;
+  font-weight: 500;
   letter-spacing: -0.02em;
   margin-bottom: 0.3em;
 }
 
 .slidev-layout.section h1 + p {
   font-size: 1.25rem;
+  font-weight: 300;
   color: var(--foreground-secondary);
 }
 
@@ -85,13 +89,13 @@
 
 .slidev-layout.statement h1 {
   font-size: 3.4rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0;
 }
 
-/* ----- fact ------------------------------------------------------- */
+/* ----- fact — the giant Roboto Flex numeral ----------------------- */
 .slidev-layout.fact {
   display: flex;
   flex-direction: column;
@@ -102,22 +106,22 @@
 }
 
 .slidev-layout.fact h1 {
-  font-family: var(--font-display);
+  font-family: var(--font-flex);
   font-size: 8rem;
-  font-weight: 700;
-  line-height: 0.95;
+  font-weight: 500;
+  line-height: 0.9;
   letter-spacing: -0.04em;
   margin: 0;
-  color: var(--accent);
+  color: var(--foreground);
 }
 
 .slidev-layout.fact h1 + p {
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.22em;
   color: var(--foreground-secondary);
-  margin-top: 1rem;
+  margin-top: 1.2rem;
 }
 
 /* ----- quote ------------------------------------------------------ */
@@ -131,8 +135,8 @@
 
 .slidev-layout.quote h1 {
   font-size: 2.6rem;
+  font-weight: 300;
   line-height: 1.22;
-  font-weight: 500;
   margin: 0 0 1.2rem;
 }
 
@@ -154,7 +158,7 @@
   color: var(--muted);
 }
 
-/* ----- end -------------------------------------------------------- */
+/* ----- end — inverted, like the site's Contact CTA ---------------- */
 .slidev-layout.end {
   display: flex;
   flex-direction: column;
@@ -163,11 +167,28 @@
   height: 100%;
   text-align: center;
   padding: 3rem;
+  background: var(--foreground);
+  color: var(--background);
 }
 
 .slidev-layout.end h1 {
   font-size: 3rem;
+  font-weight: 500;
+  color: var(--background);
   margin-bottom: 0.5em;
+}
+
+.slidev-layout.end p {
+  color: var(--background);
+  font-weight: 300;
+}
+
+.slidev-layout.end .footnote {
+  color: color-mix(in srgb, var(--background) 55%, transparent);
+}
+
+.slidev-layout.end a {
+  color: var(--background);
 }
 
 /* ----- default / center balance ---------------------------------- */

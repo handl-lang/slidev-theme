@@ -5,13 +5,23 @@ import { defineConfig } from 'unocss'
  *
  * Slidev merges this with its own config, so the tokens in `tokens.css`
  * become first-class utilities: `bg-background`, `text-accent`,
- * `border-edge`, `font-display`, `bg-primary-foreground`, …
+ * `border-foreground`, `font-display`, `text-link-primary-hover`, …
  */
 export default defineConfig({
   theme: {
     fontFamily: {
       display: 'Roboto Condensed, sans-serif',
       flex: 'Roboto Flex, sans-serif',
+    },
+    fontSize: {
+      '10xl': '10rem',
+      '11xl': '11rem',
+      '12xl': '12rem',
+      '13xl': '13rem',
+      '14xl': '14rem',
+      '15xl': '15rem',
+      '16xl': '16rem',
+      '17xl': '17rem',
     },
     colors: {
       black: 'var(--black)',
@@ -61,7 +71,14 @@ export default defineConfig({
       input: 'var(--input)',
       border: 'var(--border)',
       ring: 'var(--ring)',
+
       edge: 'var(--edge)',
+      'edge-soft': 'var(--edge-soft)',
+
+      link: {
+        primary: 'var(--link-primary)',
+        'primary-hover': 'var(--link-primary-hover)',
+      },
 
       chart: {
         1: 'var(--chart-1)',
@@ -74,6 +91,7 @@ export default defineConfig({
   },
   shortcuts: {
     'bg-main': 'bg-background text-foreground',
-    'border-main': 'border-edge',
+    'border-main': 'border-foreground',
+    'text-hover': 'hover:text-link-primary-hover transition-colors',
   },
 })

@@ -28,12 +28,12 @@ layout: default
 
 ## Headings use Roboto Condensed
 
-### Body copy is Roboto
+### Body copy is Roboto, set light
 
 Paragraphs, **strong text**, *emphasis*, and `inline code` all inherit the
 LFDS palette. Links look like <a href="#" class="link">this dashed link</a>.
 
-- Lists use a square accent marker
+- Lists use the square brand marker
 - Second item
 - Third item
 
@@ -52,8 +52,8 @@ layout: default
 
 #### `<AugFrame>`
 
-A panel with cut corners — the signature of the theme. Pass `accent` or
-`secondary` to recolor it.
+Cuts the top-right and bottom-left corners at 12px, filled with the
+secondary surface.
 
 </AugFrame>
 
@@ -61,23 +61,57 @@ A panel with cut corners — the signature of the theme. Pass `accent` or
 
 #### Accent frame
 
-Backed by [augmented-ui](https://augmented-ui.com).
+<Cta>Read more</Cta>
 
 </AugFrame>
 
 </div>
 <div>
 
-<Kicker>kicker</Kicker>
+<Kicker>kicker label</Kicker>
 
 <p style="margin-top:1rem">
 <Tag>default</Tag> <Tag variant="accent">accent</Tag> <Tag variant="secondary">secondary</Tag>
 </p>
 
-<p style="margin-top:1.4rem">
-The <code>&lt;Tag&gt;</code> and <code>&lt;Kicker&gt;</code> components are
-auto-imported from the theme.
+<p style="margin-top:1.2rem">
+Labels are mono + uppercase; <code>&lt;Cta&gt;</code> renders the
+<code>[&nbsp;bracketed&nbsp;]</code> treatment.
 </p>
+
+</div>
+</div>
+
+---
+layout: default
+---
+
+# Large frames & inverted
+
+<div class="cols">
+<div>
+
+<AugFrame size="lg" style="height:100%">
+
+#### `size="lg"`
+
+Every corner cut at `--aug-size` (responsive 32 / 40 / 48px) — the
+treatment the site gives to full sections.
+
+</AugFrame>
+
+</div>
+<div>
+
+<AugFrame inverted size="lg" style="height:100%">
+
+### Inverted
+
+Foreground fill, background text.
+
+<Cta>Contact me</Cta>
+
+</AugFrame>
 
 </div>
 </div>
@@ -146,7 +180,9 @@ class Monoid:
 layout: default
 ---
 
-# Palette
+# Palette & rules
+
+<div class="label">design tokens</div>
 
 <div class="swatches" style="margin-top:1rem">
   <span class="swatch"><i style="--sw: var(--blue)"></i>blue</span>
@@ -158,13 +194,9 @@ layout: default
   <span class="swatch"><i style="--sw: var(--orange)"></i>orange</span>
 </div>
 
-| Token | Purpose |
-|---|---|
-| `--foreground` | default text |
-| `--foreground-secondary` | cyan accents |
-| `--accent` | orange highlight |
-| `--secondary` | magenta |
-| `--edge` | hairlines on dark |
+<div style="margin-top:1.6rem" class="mono">
+Hairlines are <code>border-foreground</code>, exactly as on the site.
+</div>
 
 ---
 layout: section

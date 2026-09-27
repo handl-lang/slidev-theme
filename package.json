@@ -1,7 +1,7 @@
 {
   "name": "slidev-theme-lfds",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "LFDS — a retro-terminal Slidev theme: Roboto type, a phosphor palette, augmented corners and dashed links.",
   "keywords": [
     "slidev-theme",
@@ -29,6 +29,7 @@
     "screenshot": "slidev export example.md --format png"
   },
   "dependencies": {
+    "@fontsource-variable/roboto-flex": "^5.3.0",
     "@slidev/types": "^53.0.0",
     "augmented-ui": "^2.0.0"
   },
@@ -43,7 +44,8 @@
       "fonts": {
         "sans": "Roboto",
         "serif": "Roboto Condensed",
-        "mono": "Roboto Mono"
+        "mono": "Roboto Mono",
+        "weights": "300,400,500,600,700,900"
       }
     }
   }

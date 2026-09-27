@@ -1,5 +1,7 @@
 /* ------------------------------------------------------------------
    LFDS — components & utilities
+   The augmented shapes follow the site: small frames cut the top-right
+   and bottom-left at 12px; large frames cut every corner at --aug-size.
    ------------------------------------------------------------------ */
 
 /* ----- augmented-ui frame ---------------------------------------- */
@@ -7,7 +9,7 @@
   --aug-tr: 12px;
   --aug-bl: 12px;
   --aug-border-all: 1px;
-  --aug-border-bg: var(--edge);
+  --aug-border-bg: var(--background);
   --aug-inlay-all: 0px;
   --aug-inlay-bg: var(--background-secondary);
   background: var(--background-secondary);
@@ -16,12 +18,36 @@
 
 .aug-frame.accent {
   --aug-border-bg: var(--accent);
-  --aug-inlay-bg: color-mix(in srgb, var(--accent) 10%, var(--background-secondary));
 }
 
 .aug-frame.secondary {
   --aug-border-bg: var(--secondary);
-  --aug-inlay-bg: color-mix(in srgb, var(--secondary) 10%, var(--background-secondary));
+}
+
+/* inverted — foreground fill, background text */
+.aug-frame.inverted {
+  --aug-border-bg: var(--background);
+  --aug-inlay-bg: var(--foreground);
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.aug-frame.inverted h1,
+.aug-frame.inverted h2,
+.aug-frame.inverted h3,
+.aug-frame.inverted h4,
+.aug-frame.inverted strong {
+  color: var(--background);
+}
+
+/* large — every corner cut at --aug-size, no border */
+.aug-frame.lg {
+  --aug-tr: var(--aug-size);
+  --aug-bl: var(--aug-size);
+  --aug-tl: var(--aug-size);
+  --aug-br: var(--aug-size);
+  --aug-border-all: 0px;
+  padding: 1.6rem 1.8rem;
 }
 
 .aug-frame h4,
@@ -56,25 +82,41 @@
   border-bottom: 1px dashed var(--link-primary-hover);
 }
 
-/* ----- kicker (uppercase mono label) ----------------------------- */
-.kicker {
+/* ----- cta (bracketed mono label) -------------------------------- */
+.cta {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+.cta::before {
+  content: '[';
+}
+
+.cta::after {
+  content: ']';
+}
+
+.cta:hover {
+  color: var(--link-primary-hover);
+}
+
+/* ----- kicker / label -------------------------------------------- */
+.kicker {
+  display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.8rem;
   font-weight: 500;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--foreground-secondary);
-}
-
-.kicker::before {
-  content: '';
-  width: 0.5rem;
-  height: 0.5rem;
-  flex: none;
-  background: var(--accent);
+  color: inherit;
 }
 
 /* ----- tag / chip ------------------------------------------------ */
@@ -82,11 +124,11 @@
   display: inline-block;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--foreground-secondary);
-  border: 1px solid var(--edge);
-  padding: 0.12rem 0.45rem;
+  color: inherit;
+  border: 1px solid currentColor;
+  padding: 0.15rem 0.5rem;
   vertical-align: middle;
 }
 
@@ -137,7 +179,7 @@
 }
 
 .secondary-text {
-  color: var(--secondary);
+  color: var(--foreground-secondary);
 }
 
 .mono {
@@ -146,6 +188,14 @@
 
 .display {
   font-family: var(--font-display);
+}
+
+/* giant Roboto Flex numeral (the site's "45") */
+.numeral {
+  font-family: var(--font-flex);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
 }
 
 .footnote {

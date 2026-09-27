@@ -1,7 +1,8 @@
 /* ------------------------------------------------------------------
    LFDS — base layer
-   Global rules ported from the source `@layer base`, plus the slide
-   typography the theme layers on top of `layouts-base.css`.
+   Mirrors how luisfuturist.com applies the design system: Roboto for
+   body copy, Roboto Condensed for display headings, Roboto Mono for
+   labels, and `--foreground` hairlines (`border-foreground`).
    ------------------------------------------------------------------ */
 
 *,
@@ -49,6 +50,7 @@ section {
 .slidev-layout {
   font-family: var(--font-sans);
   font-size: 1.05rem;
+  font-weight: 300;
   line-height: 1.55;
   padding: 2.2rem 3rem;
   background: var(--background);
@@ -61,15 +63,15 @@ section {
 .slidev-layout h3,
 .slidev-layout h4 {
   font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.01em;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--foreground);
 }
 
 .slidev-layout h1 {
   font-size: 2.7rem;
-  margin-bottom: 0.55em;
+  margin-bottom: 0.5em;
 }
 
 .slidev-layout h2 {
@@ -89,40 +91,43 @@ section {
   font-size: 1rem;
 }
 
+/* h6 is the mono uppercase label, as on the site */
 .slidev-layout h6 {
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  opacity: 0.55;
+  letter-spacing: 0.2em;
+  opacity: 0.7;
 }
 
 .slidev-layout p {
   margin: 0.5em 0;
+  font-weight: 300;
 }
 
 .slidev-layout strong {
-  color: var(--white);
   font-weight: 700;
-}
-
-.dark .slidev-layout strong {
-  color: var(--white);
+  color: var(--foreground);
 }
 
 .slidev-layout em {
-  color: var(--foreground-secondary);
   font-style: italic;
+  color: var(--foreground-secondary);
 }
 
 /* links */
 .slidev-layout a {
   color: var(--link-primary);
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-/* lists — terminal markers */
+.slidev-layout a:hover {
+  color: var(--link-primary-hover);
+}
+
+/* lists — square marker (the brand motif) */
 .slidev-layout ul {
   list-style: none;
   padding-left: 0;
@@ -143,16 +148,20 @@ section {
   width: 0.5rem;
   height: 0.5rem;
   background: var(--accent);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
 
 .slidev-layout ol {
-  padding-left: 1.3rem;
+  padding-left: 1.4rem;
+}
+
+.slidev-layout ol > li {
+  margin: 0.36rem 0;
 }
 
 .slidev-layout ol > li::marker {
-  color: var(--accent);
+  color: var(--foreground);
   font-family: var(--font-mono);
+  font-size: 0.85em;
 }
 
 .slidev-layout li > ul,
@@ -168,8 +177,7 @@ section {
 
 .slidev-layout :not(pre) > code {
   background: var(--background-secondary);
-  border: 1px solid var(--edge);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--edge-soft);
   padding: 0.08em 0.36em;
   color: var(--foreground-secondary);
 }
@@ -177,8 +185,7 @@ section {
 .slidev-layout pre.slidev-code,
 .slidev-layout .slidev-code-wrapper > pre {
   background: var(--code-bg) !important;
-  border: 1px solid var(--edge);
-  border-radius: var(--radius-md);
+  border: 1px solid var(--edge-soft);
 }
 
 .slidev-layout .slidev-code {
@@ -192,18 +199,20 @@ section {
   border-left: 2px solid var(--accent);
   background: var(--background-secondary);
   color: var(--foreground);
+  font-weight: 300;
 }
 
 .slidev-layout blockquote > p {
   margin: 0;
 }
 
-/* tables */
+/* tables — foreground hairlines, mono uppercase header */
 .slidev-layout table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
   font-family: var(--font-sans);
+  font-weight: 300;
 }
 
 .slidev-layout th,
@@ -215,23 +224,51 @@ section {
 
 .slidev-layout thead th {
   font-family: var(--font-mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   background: var(--background-secondary);
-  color: var(--foreground-secondary);
+  color: var(--foreground);
 }
 
 .slidev-layout tbody tr:nth-child(even) {
   background: color-mix(in srgb, var(--foreground) 4%, transparent);
 }
 
-/* horizontal rule */
+/* rules */
 .slidev-layout hr {
   border: 0;
   border-top: 1px solid var(--edge);
   margin: 1.2rem 0;
+}
+
+/* ------------------------------------------------------------------
+   utilities lifted from the site
+   ------------------------------------------------------------------ */
+
+/* large mono section label (the "README" / "PROJECTS" treatment) */
+.slidev-layout .label {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+/* inverted block — foreground fill, background text (the Contact CTA) */
+.slidev-layout .invert {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.slidev-layout .invert h1,
+.slidev-layout .invert h2,
+.slidev-layout .invert h3,
+.slidev-layout .invert h4,
+.slidev-layout .invert strong {
+  color: var(--background);
 }
 
 /* katex / mermaid harmony */
