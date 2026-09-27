@@ -18,8 +18,8 @@ const current = computed(() => {
 
 const hidden = computed(() => {
   const route = slides.value?.find(r => r.no === currentSlideNo.value)
-  return isBackup(route)
-    || ['cover', 'intro', 'end'].includes(String(currentLayout.value))
+  // only the closing slide and appendix slides hide the pager
+  return isBackup(route) || String(currentLayout.value) === 'end'
 })
 
 const pad = (n: number) => String(n).padStart(2, '0')
