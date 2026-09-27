@@ -1,7 +1,13 @@
 /* ------------------------------------------------------------------
    LFDS — components & utilities
-   The augmented shapes follow the site: small frames cut the top-right
-   and bottom-left at 12px; large frames cut every corner at --aug-size.
+
+   Colour roles, as used on luisfuturist.com:
+     --foreground            primary text + hairlines (the main colour)
+     --background-secondary  surfaces (frames, code, table heads)
+     --accent (orange)       interaction only — focus / selection / open
+     --link-primary-hover    hovered links
+   Orange and magenta are NOT decorative; emphasis is done by inverting
+   (a foreground fill) rather than by tinting.
    ------------------------------------------------------------------ */
 
 /* ----- augmented-ui frame ---------------------------------------- */
@@ -16,15 +22,7 @@
   padding: 0.95rem 1.15rem;
 }
 
-.aug-frame.accent {
-  --aug-border-bg: var(--accent);
-}
-
-.aug-frame.secondary {
-  --aug-border-bg: var(--secondary);
-}
-
-/* inverted — foreground fill, background text */
+/* inverted — foreground fill, background text (the site's CTA) */
 .aug-frame.inverted {
   --aug-border-bg: var(--background);
   --aug-inlay-bg: var(--foreground);
@@ -119,7 +117,7 @@
   color: inherit;
 }
 
-/* ----- tag / chip ------------------------------------------------ */
+/* ----- tag ------------------------------------------------------- */
 .tag {
   display: inline-block;
   font-family: var(--font-mono);
@@ -132,29 +130,11 @@
   vertical-align: middle;
 }
 
-.tag.accent {
-  color: var(--accent);
-  border-color: var(--accent);
-}
-
-.tag.secondary {
-  color: var(--secondary);
-  border-color: var(--secondary);
-}
-
 /* ----- panels & grids -------------------------------------------- */
 .panel {
-  border: 1px solid var(--edge);
+  border: 1px solid var(--foreground);
   background: var(--background-secondary);
   padding: 1rem 1.2rem;
-}
-
-.panel.accent {
-  border-color: var(--accent);
-}
-
-.panel.secondary {
-  border-color: var(--secondary);
 }
 
 .cols {
@@ -172,14 +152,6 @@
 /* ----- text helpers ---------------------------------------------- */
 .muted {
   color: var(--muted);
-}
-
-.accent-text {
-  color: var(--accent);
-}
-
-.secondary-text {
-  color: var(--foreground-secondary);
 }
 
 .mono {

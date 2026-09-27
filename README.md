@@ -6,9 +6,25 @@ Roboto type, a phosphor palette, augmented (cut-corner) frames, `--foreground`
 hairlines and bracketed mono CTAs.
 
 - **Type** — Roboto Condensed (display), Roboto (body, set light), Roboto Mono (labels/code), Roboto Flex (numerals)
-- **Palette** — a phosphor set (blue · cyan · green · magenta · red · yellow · orange) on black, with full light + dark themes
+- **Palette** — a phosphor set on black, with full light + dark themes
 - **Corners** — cut corners via [`augmented-ui`](https://augmented-ui.com): 12px on small frames, `--aug-size` (responsive 32/40/48px) on large ones
 - **Surfaces** — `--foreground` hairlines, dashed links, sharp accent focus outlines, inverted foreground blocks
+
+## Colour roles
+
+The theme follows the site's discipline — it is essentially monochrome:
+
+| Token | Role |
+|---|---|
+| `--foreground` (= `--primary`) | the main colour — all text and hairlines |
+| `--background-secondary` | surfaces (frames, code, table heads) |
+| `--background` | the page |
+| `--accent` (orange) | **interaction only** — focus, selection, open state |
+| `--link-primary-hover` | hovered links and CTAs |
+| `--muted` | de-emphasised text |
+
+Orange and magenta are **not** decorative. Emphasis is expressed by *inverting*
+(a `--foreground` fill), not by tinting — exactly as the site's Contact CTA does.
 
 ## Install
 
@@ -31,7 +47,7 @@ theme: lfds
 | `section` | Centered divider |
 | `statement` | Full-bleed statement at display scale |
 | `fact` | Oversized Roboto Flex numeral + mono caption |
-| `quote` | Pull quote with an accent mark |
+| `quote` | Pull quote |
 | `end` | **Inverted** closing slide (foreground fill, background text) |
 
 Built-in layouts (`default`, `center`, `two-cols`, …) remain available and are
@@ -39,15 +55,15 @@ styled by LFDS.
 
 ## Components
 
-- **`<AugFrame>`** — a panel with cut corners. Props: `accent`, `secondary`,
-  `inverted`, `size` (`sm` cuts top-right + bottom-left at 12px; `lg` cuts every
-  corner at `--aug-size`).
+- **`<AugFrame>`** — a panel with cut corners. Props: `inverted` (foreground
+  fill, background text), `size` (`sm` cuts top-right + bottom-left at 12px;
+  `lg` cuts every corner at `--aug-size`).
 - **`<Kicker>`** — a mono, uppercase, letter-spaced label.
 - **`<Cta>`** — the bracketed `[ LABEL ]` treatment.
-- **`<Tag>`** — a small squared tag. Props: `variant` (`accent` | `secondary`).
+- **`<Tag>`** — a small squared tag (inherits its colour).
 
 ```md
-<AugFrame accent>
+<AugFrame>
 
 #### A framed panel
 
@@ -57,15 +73,14 @@ styled by LFDS.
 
 <AugFrame inverted size="lg">…</AugFrame>
 
-<Kicker>section 01</Kicker> <Tag variant="accent">new</Tag>
+<Kicker>section 01</Kicker> <Tag>new</Tag>
 ```
 
 ## Utilities
 
 `.link` (dashed underline) · `.cta` · `.kicker` · `.label` · `.tag` ·
 `.panel` · `.aug-frame` · `.invert` · `.numeral` · `.cols` / `.cols-3` ·
-`.muted` · `.accent-text` · `.secondary-text` · `.mono` · `.display` ·
-`.footnote` · `.swatches` / `.swatch`
+`.muted` · `.mono` · `.display` · `.footnote` · `.swatches` / `.swatch`
 
 ## Design tokens
 
@@ -78,11 +93,11 @@ All tokens live in `styles/tokens.css` and switch with `html.dark`:
 `--aug-size` · `--blue` / `--cyan` / `--green` / `--magenta` / `--red` /
 `--yellow` / `--orange` · `--gray-1..3`
 
-They are also exposed as UnoCSS utilities, so you can style slides directly with
-the site's own vocabulary:
+They are also exposed as UnoCSS utilities, so you can style slides with the
+site's own vocabulary:
 
 ```html
-<div class="border-t border-foreground text-link-primary-hover font-display uppercase">
+<div class="border-t border-foreground hover:text-link-primary-hover font-display uppercase">
   …
 </div>
 ```

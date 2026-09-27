@@ -57,9 +57,9 @@ secondary surface.
 
 </AugFrame>
 
-<AugFrame accent style="margin-top:1rem">
+<AugFrame inverted style="margin-top:1rem">
 
-#### Accent frame
+#### Inverted frame
 
 <Cta>Read more</Cta>
 
@@ -71,12 +71,13 @@ secondary surface.
 <Kicker>kicker label</Kicker>
 
 <p style="margin-top:1rem">
-<Tag>default</Tag> <Tag variant="accent">accent</Tag> <Tag variant="secondary">secondary</Tag>
+<Tag>tag</Tag> <Tag>another</Tag>
 </p>
 
 <p style="margin-top:1.2rem">
 Labels are mono + uppercase; <code>&lt;Cta&gt;</code> renders the
-<code>[&nbsp;bracketed&nbsp;]</code> treatment.
+<code>[&nbsp;bracketed&nbsp;]</code> treatment. Emphasis comes from
+inverting, not from tinting.
 </p>
 
 </div>
@@ -194,8 +195,12 @@ layout: default
   <span class="swatch"><i style="--sw: var(--orange)"></i>orange</span>
 </div>
 
-<div style="margin-top:1.6rem" class="mono">
-Hairlines are <code>border-foreground</code>, exactly as on the site.
+<p style="margin-top:1.4rem">
+<Tag>tag</Tag> <Tag>another</Tag>
+</p>
+
+<div style="margin-top:1.4rem" class="mono">
+Hairlines are <code>border-foreground</code>. Orange is interaction only.
 </div>
 
 ---

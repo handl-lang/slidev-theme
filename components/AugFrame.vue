@@ -1,18 +1,12 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    /** accent border */
-    accent?: boolean
-    /** magenta border */
-    secondary?: boolean
-    /** foreground fill, background text */
+    /** foreground fill, background text — the site's emphasis treatment */
     inverted?: boolean
     /** `sm` cuts top-right + bottom-left at 12px; `lg` cuts every corner at --aug-size */
     size?: 'sm' | 'lg'
   }>(),
   {
-    accent: false,
-    secondary: false,
     inverted: false,
     size: 'sm',
   },
@@ -27,7 +21,7 @@ const shapes: Record<string, string> = {
 <template>
   <div
     class="aug-frame"
-    :class="[size, { accent, secondary, inverted }]"
+    :class="[size, { inverted }]"
     :data-augmented-ui="shapes[size]"
   >
     <slot />
