@@ -1,69 +1,56 @@
 /* ------------------------------------------------------------------
-   LFDS — components & utilities
+   handl — components & utilities
 
-   Colour roles, as used on luisfuturist.com:
-     --foreground            primary text + hairlines (the main colour)
+   Colour roles, as used on the handl docs site:
+     --foreground            text + emphasis fills (inversion)
+     --primary               the handl green — links, markers, `>>>`
      --background-secondary  surfaces (frames, code, table heads)
-     --accent (orange)       interaction only — focus / selection / open
-     --link-primary-hover    hovered links
-   Orange and magenta are NOT decorative; emphasis is done by inverting
-   (a foreground fill) rather than by tinting.
+     --muted                 table stripes / quiet surfaces
+     --border                structural hairlines
    ------------------------------------------------------------------ */
 
-/* ----- augmented-ui frame ---------------------------------------- */
-.aug-frame {
-  --aug-tr: 12px;
-  --aug-bl: 12px;
-  --aug-border-all: 1px;
-  --aug-border-bg: var(--background);
-  --aug-inlay-all: 0px;
-  --aug-inlay-bg: var(--background-secondary);
+/* ----- frame ----------------------------------------------------- */
+.frame {
+  border: 1px solid var(--edge);
   background: var(--background-secondary);
   padding: 0.95rem 1.15rem;
 }
 
-/* inverted — foreground fill, background text (the site's CTA) */
-.aug-frame.inverted {
-  --aug-border-bg: var(--background);
-  --aug-inlay-bg: var(--foreground);
+/* inverted — foreground fill, background text (the docs' emphasis) */
+.frame.inverted {
+  border-color: var(--foreground);
   background: var(--foreground);
   color: var(--background);
 }
 
-.aug-frame.inverted h1,
-.aug-frame.inverted h2,
-.aug-frame.inverted h3,
-.aug-frame.inverted h4,
-.aug-frame.inverted strong {
+.frame.inverted h1,
+.frame.inverted h2,
+.frame.inverted h3,
+.frame.inverted h4,
+.frame.inverted strong {
   color: var(--background);
 }
 
-/* large — every corner cut at --aug-size, no border */
-.aug-frame.lg {
-  --aug-tr: var(--aug-size);
-  --aug-bl: var(--aug-size);
-  --aug-tl: var(--aug-size);
-  --aug-br: var(--aug-size);
-  --aug-border-all: 0px;
+.frame.inverted code {
+  color: var(--background);
+}
+
+/* large — roomier padding, same square shape */
+.frame.lg {
   padding: 1.6rem 1.8rem;
 }
 
-.aug-frame h4,
-.aug-frame h3 {
+.frame h4,
+.frame h3 {
   margin-top: 0;
 }
 
-/* ----- callout (augmented alert) --------------------------------- */
+/* ----- callout (square alert, primary left rule) ----------------- */
 .callout {
-  --aug-tr: 12px;
-  --aug-bl: 12px;
-  --aug-border-all: 1px;
-  --aug-border-bg: var(--foreground);
-  --aug-inlay-all: 0px;
-  --aug-inlay-bg: var(--background-secondary);
+  border: 1px solid var(--edge);
+  border-left: 3px solid var(--primary);
   background: var(--background-secondary);
   padding: 0.85rem 1.15rem;
-  font-weight: 300;
 }
 
 .callout > :first-child {
@@ -74,34 +61,16 @@
   margin-bottom: 0;
 }
 
-/* ----- link (dashed underline) ----------------------------------- */
+/* ----- link ------------------------------------------------------ */
 .link {
-  position: relative;
-  display: inline-block;
   color: var(--link-primary);
-}
-
-.link::after {
-  content: '';
-  display: block;
-  width: 100%;
-  position: absolute;
-  height: 0;
-  bottom: 1px;
-  left: 0;
-  border-bottom: 1px dashed var(--link-primary);
-  transition: width 0.3s ease;
 }
 
 .link:hover {
   color: var(--link-primary-hover);
 }
 
-.link:hover::after {
-  border-bottom: 1px dashed var(--link-primary-hover);
-}
-
-/* ----- cta (bracketed mono label) -------------------------------- */
+/* ----- cta (`>>>` prompt label) ---------------------------------- */
 .cta {
   display: inline-flex;
   align-items: center;
@@ -112,15 +81,19 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: inherit;
-  transition: color 0.3s ease;
+  transition: color 0.15s ease;
 }
 
 .cta::before {
-  content: '[';
+  content: '>>>';
+  color: var(--primary);
+  letter-spacing: -0.06em;
 }
 
-.cta::after {
-  content: ']';
+.frame.inverted .cta::before,
+.invert .cta::before,
+.slidev-layout.end .cta::before {
+  color: var(--background);
 }
 
 .cta:hover {
@@ -145,15 +118,21 @@
   font-size: 0.72rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: inherit;
+  color: var(--primary);
   border: 1px solid currentColor;
   padding: 0.15rem 0.5rem;
   vertical-align: middle;
 }
 
+.frame.inverted .tag,
+.invert .tag,
+.slidev-layout.end .tag {
+  color: var(--background);
+}
+
 /* ----- panels & grids -------------------------------------------- */
 .panel {
-  border: 1px solid var(--foreground);
+  border: 1px solid var(--edge);
   background: var(--background-secondary);
   padding: 1rem 1.2rem;
 }
@@ -172,7 +151,7 @@
 
 /* ----- text helpers ---------------------------------------------- */
 .muted {
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 .mono {
@@ -183,18 +162,18 @@
   font-family: var(--font-display);
 }
 
-/* giant Roboto Flex numeral (the site's "45") */
+/* giant numeral — Source Sans 3 at display weight */
 .numeral {
   font-family: var(--font-flex);
-  font-weight: 500;
+  font-weight: 700;
   line-height: 0.9;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
 }
 
 .footnote {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 /* ----- stat ------------------------------------------------------ */
@@ -206,10 +185,10 @@
 
 .stat-value {
   font-family: var(--font-flex);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 3.4rem;
   line-height: 0.9;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   color: var(--foreground);
 }
 
@@ -218,7 +197,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 /* ----- pipeline (animated stage flow) ---------------------------- */
@@ -230,12 +209,7 @@
 }
 
 .pipe-stage {
-  --aug-tr: 7px;
-  --aug-bl: 7px;
-  --aug-border-all: 1px;
-  --aug-border-bg: var(--foreground);
-  --aug-inlay-all: 0px;
-  --aug-inlay-bg: var(--background-secondary);
+  border: 1px solid var(--edge);
   background: var(--background-secondary);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -250,7 +224,7 @@
   position: relative;
   width: 1.15rem;
   height: 1px;
-  background: var(--foreground);
+  background: var(--edge);
   transform-origin: left center;
 }
 
@@ -261,8 +235,8 @@
   top: 50%;
   width: 6px;
   height: 6px;
-  border-top: 1px solid var(--foreground);
-  border-right: 1px solid var(--foreground);
+  border-top: 1px solid var(--edge);
+  border-right: 1px solid var(--edge);
   transform: translateY(-50%) rotate(45deg);
 }
 
@@ -270,7 +244,7 @@
 .steps-v {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid var(--foreground);
+  border-left: 1px solid var(--edge);
   margin-left: 0.6rem;
 }
 
@@ -290,24 +264,23 @@
   top: 1.15rem;
   width: 7px;
   height: 7px;
-  background: var(--foreground);
+  background: var(--primary);
 }
 
 .step-v-num {
   font-family: var(--font-mono);
   font-size: 1.1rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 .step-v-title {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 700;
   font-size: 1.2rem;
   color: var(--foreground);
 }
 
 .step-v-text {
-  font-weight: 300;
   color: var(--foreground);
   opacity: 0.85;
 }
@@ -328,7 +301,6 @@
 
 .bar-label {
   font-size: 0.9rem;
-  font-weight: 300;
   color: var(--foreground);
   text-align: right;
 }
@@ -340,7 +312,7 @@
 
 .bar-fill {
   height: 100%;
-  background: var(--foreground);
+  background: var(--primary);
   transform-origin: left center;
 }
 
@@ -351,7 +323,7 @@
 }
 
 /* ----- ambient motion -------------------------------------------- */
-@keyframes lfds-blink {
+@keyframes h-blink {
   0%,
   50% {
     opacity: 1;
@@ -362,7 +334,7 @@
   }
 }
 
-@keyframes lfds-pulse {
+@keyframes h-pulse {
   0%,
   100% {
     opacity: 0.45;
@@ -372,7 +344,7 @@
   }
 }
 
-@keyframes lfds-drift {
+@keyframes h-drift {
   from {
     background-position: 0 0;
   }
@@ -384,11 +356,19 @@
 .cursor::after {
   content: '\258D';
   margin-left: 0.1em;
-  animation: lfds-blink 1.1s steps(1) infinite;
+  color: var(--primary);
+  animation: h-blink 1.1s steps(1) infinite;
 }
 
 .pulse {
-  animation: lfds-pulse 2.4s ease-in-out infinite;
+  animation: h-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor::after,
+  .pulse {
+    animation: none;
+  }
 }
 
 /* ----- color swatches (for docs / example) ----------------------- */
@@ -404,35 +384,36 @@
   gap: 0.5rem;
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 .swatch i {
   width: 1rem;
   height: 1rem;
   display: inline-block;
+  border: 1px solid var(--edge);
   background: var(--sw);
 }
 
 /* ----- chrome: progress bar + slide pager ------------------------ */
-.lfds-progress {
+.h-progress {
   position: fixed;
   inset: 0 0 auto 0;
   height: 3px;
   z-index: 200;
   pointer-events: none;
   /* faint track so the bar reads as progress from slide 1 */
-  background: color-mix(in srgb, var(--foreground) 20%, transparent);
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
-.lfds-progress-bar {
+.h-progress-bar {
   height: 100%;
-  background: var(--foreground);
+  background: var(--primary);
   transform-origin: left center;
   transition: transform 0.35s ease;
 }
 
-.lfds-pager {
+.h-pager {
   position: fixed;
   right: 1.5rem;
   bottom: 1.1rem;
@@ -443,26 +424,26 @@
   font-family: var(--font-mono);
   font-size: 0.8rem;
   letter-spacing: 0.18em;
-  color: var(--muted);
+  color: var(--muted-foreground);
   pointer-events: none;
 }
 
-.lfds-pager-current {
-  color: var(--foreground);
+.h-pager-current {
+  color: var(--primary);
 }
 
-.lfds-pager-sep {
+.h-pager-sep {
   opacity: 0.5;
 }
 
 /* in print/export the layers render inside each slide page, so anchor
    to the page instead of the viewport */
-.lfds-progress.is-print,
-.lfds-pager.is-print {
+.h-progress.is-print,
+.h-pager.is-print {
   position: absolute;
 }
 
-.lfds-pager.is-print {
+.h-pager.is-print {
   right: 3rem;
   bottom: 2rem;
 }

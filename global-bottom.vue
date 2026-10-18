@@ -28,12 +28,12 @@ const pad = (n: number) => String(n).padStart(2, '0')
 <template>
   <div
     v-if="!hidden"
-    class="lfds-pager"
+    class="h-pager"
     :class="{ 'is-print': isPrintMode }"
     aria-hidden="true"
   >
-    <span class="lfds-pager-current">{{ pad(current) }}</span>
-    <span class="lfds-pager-sep">/</span>
-    <span class="lfds-pager-total">{{ pad(total) }}</span>
+    <span class="h-pager-current">{{ pad(current) }}</span>
+    <span class="h-pager-sep">/</span>
+    <span class="h-pager-total">{{ pad(total) }}</span>
   </div>
 </template>

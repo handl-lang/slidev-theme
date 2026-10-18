@@ -1,10 +1,10 @@
 ---
 theme: ./
 layout: cover
-title: LFDS
+title: handl
 info: |
-  LFDS — a retro-terminal Slidev theme: Roboto type, a phosphor
-  palette, augmented corners and dashed links.
+  handl — a Slidev theme in the handl docs look: Source Sans 3 /
+  Source Code Pro, an oklch green ramp, square corners and `>>>`.
 highlighter: shiki
 lineNumbers: false
 transition: slide-left
@@ -12,13 +12,13 @@ colorSchema: dark
 mdc: true
 ---
 
-<Kicker>slidev-theme-lfds</Kicker>
+<Kicker>slidev-theme-handl</Kicker>
 
-# A retro-terminal theme for Slidev
+# A handl theme for Slidev
 
-Phosphor colors, augmented corners, Roboto type.
+Green ramp, square corners, `>>>` prompts.
 
-<div class="footnote">github.com/luisfuturist/slidev-theme-lfds</div>
+<div class="footnote">github.com/handl-lang/slidev-theme</div>
 
 ---
 layout: default
@@ -26,18 +26,18 @@ layout: default
 
 # Typography
 
-## Headings use Roboto Condensed
+## Headings are Source Sans 3, bold
 
-### Body copy is Roboto, set light
+### Body copy is Source Sans 3
 
 Paragraphs, **strong text**, *emphasis*, and `inline code` all inherit the
-LFDS palette. Links look like <a href="#" class="link">this dashed link</a>.
+handl palette. Links look like <a href="#" class="link">this</a>.
 
-- Lists use the square brand marker
+- Lists use a square marker in the handl green
 - Second item
 - Third item
 
-> Blockquotes get an accent rule and a secondary surface.
+> Blockquotes get a square panel with a primary left rule.
 
 ---
 layout: default
@@ -48,22 +48,21 @@ layout: default
 <div class="cols">
 <div>
 
-<AugFrame>
+<Frame>
 
-#### `<AugFrame>`
+#### `<Frame>`
 
-Cuts the top-right and bottom-left corners at 12px, filled with the
-secondary surface.
+A square panel on the secondary surface with a hairline border.
 
-</AugFrame>
+</Frame>
 
-<AugFrame inverted style="margin-top:1rem">
+<Frame inverted style="margin-top:1rem">
 
 #### Inverted frame
 
 <Cta>Read more</Cta>
 
-</AugFrame>
+</Frame>
 
 </div>
 <div>
@@ -76,7 +75,7 @@ secondary surface.
 
 <p style="margin-top:1.2rem">
 Labels are mono + uppercase; <code>&lt;Cta&gt;</code> renders the
-<code>[&nbsp;bracketed&nbsp;]</code> treatment. Emphasis comes from
+<code>&gt;&gt;&gt;</code> prompt treatment. Emphasis comes from
 inverting, not from tinting.
 </p>
 
@@ -92,27 +91,26 @@ layout: default
 <div class="cols">
 <div>
 
-<AugFrame size="lg" style="height:100%">
+<Frame size="lg" style="height:100%">
 
 #### `size="lg"`
 
-Every corner cut at `--aug-size` (responsive 32 / 40 / 48px) — the
-treatment the site gives to full sections.
+Roomier padding, same square shape — the docs' card treatment.
 
-</AugFrame>
+</Frame>
 
 </div>
 <div>
 
-<AugFrame inverted size="lg" style="height:100%">
+<Frame inverted size="lg" style="height:100%">
 
 ### Inverted
 
 Foreground fill, background text.
 
-<Cta>Contact me</Cta>
+<Cta>Install handl</Cta>
 
-</AugFrame>
+</Frame>
 
 </div>
 </div>
@@ -151,12 +149,12 @@ layout: default
 
 <Callout>
 
-An augmented alert — cut corners, never rounded.
+A square alert — hairline border, primary left rule.
 
 </Callout>
 
 <p style="margin-top:1rem">
-Markdown <code>&gt;</code> blockquotes share the same cut-corner shape.
+Markdown <code>&gt;</code> blockquotes share the same treatment.
 </p>
 
 </div>
@@ -168,17 +166,17 @@ layout: two-cols
 
 # Two columns
 
-The built-in `two-cols` layout still works, styled by LFDS.
+The built-in `two-cols` layout still works, styled by handl.
 
 ::right::
 
-<AugFrame secondary>
+<Frame>
 
 #### Right column
 
 Content lands on the right via the `::right::` slot.
 
-</AugFrame>
+</Frame>
 
 ---
 layout: fact
@@ -231,13 +229,13 @@ layout: default
 <div class="label">design tokens</div>
 
 <div class="swatches" style="margin-top:1rem">
-  <span class="swatch"><i style="--sw: var(--blue)"></i>blue</span>
-  <span class="swatch"><i style="--sw: var(--cyan)"></i>cyan</span>
-  <span class="swatch"><i style="--sw: var(--green)"></i>green</span>
-  <span class="swatch"><i style="--sw: var(--magenta)"></i>magenta</span>
-  <span class="swatch"><i style="--sw: var(--red)"></i>red</span>
-  <span class="swatch"><i style="--sw: var(--yellow)"></i>yellow</span>
-  <span class="swatch"><i style="--sw: var(--orange)"></i>orange</span>
+  <span class="swatch"><i style="--sw: var(--chart-1)"></i>chart-1</span>
+  <span class="swatch"><i style="--sw: var(--chart-2)"></i>chart-2</span>
+  <span class="swatch"><i style="--sw: var(--chart-3)"></i>chart-3</span>
+  <span class="swatch"><i style="--sw: var(--chart-4)"></i>chart-4</span>
+  <span class="swatch"><i style="--sw: var(--chart-5)"></i>chart-5</span>
+  <span class="swatch"><i style="--sw: var(--foreground)"></i>foreground</span>
+  <span class="swatch"><i style="--sw: var(--background-secondary)"></i>surface</span>
 </div>
 
 <p style="margin-top:1.4rem">
@@ -245,7 +243,7 @@ layout: default
 </p>
 
 <div style="margin-top:1.4rem" class="mono">
-Hairlines are <code>border-foreground</code>. Orange is interaction only.
+Hairlines are <code>border-edge</code>. Green is the accent.
 </div>
 
 ---
@@ -260,6 +258,6 @@ A divider slide, centered.
 layout: end
 ---
 
-# LFDS
+# handl
 
 <Kicker>thank you</Kicker>

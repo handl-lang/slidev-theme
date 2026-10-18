@@ -1,17 +1,18 @@
 import { defineConfig } from 'unocss'
 
 /**
- * LFDS UnoCSS extension.
+ * handl UnoCSS extension.
  *
  * Slidev merges this with its own config, so the tokens in `tokens.css`
- * become first-class utilities: `bg-background`, `text-accent`,
- * `border-foreground`, `font-display`, `text-link-primary-hover`, …
+ * become first-class utilities: `bg-background`, `text-primary`,
+ * `border-edge`, `font-display`, `text-link-primary-hover`, …
  */
 export default defineConfig({
   theme: {
     fontFamily: {
-      display: 'Roboto Condensed, sans-serif',
-      flex: 'Roboto Flex, sans-serif',
+      display: 'Source Sans 3, sans-serif',
+      flex: 'Source Sans 3, sans-serif',
+      mono: 'Source Code Pro, monospace',
     },
     fontSize: {
       '10xl': '10rem',
@@ -24,15 +25,6 @@ export default defineConfig({
       '17xl': '17rem',
     },
     colors: {
-      black: 'var(--black)',
-      white: 'var(--white)',
-      blue: 'var(--blue)',
-      cyan: 'var(--cyan)',
-      green: 'var(--green)',
-      magenta: 'var(--magenta)',
-      red: 'var(--red)',
-      yellow: 'var(--yellow)',
-      orange: 'var(--orange)',
       'gray-1': 'var(--gray-1)',
       'gray-2': 'var(--gray-2)',
       'gray-3': 'var(--gray-3)',
@@ -91,7 +83,7 @@ export default defineConfig({
   },
   shortcuts: {
     'bg-main': 'bg-background text-foreground',
-    'border-main': 'border-foreground',
+    'border-main': 'border-edge',
     'text-hover': 'hover:text-link-primary-hover transition-colors',
   },
 })

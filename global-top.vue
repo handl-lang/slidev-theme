@@ -20,7 +20,7 @@ const progress = computed(() => current.value / total.value)
 </script>
 
 <template>
-  <div class="lfds-progress" :class="{ 'is-print': isPrintMode }" aria-hidden="true">
-    <div class="lfds-progress-bar" :style="{ transform: `scaleX(${progress})` }" />
+  <div class="h-progress" :class="{ 'is-print': isPrintMode }" aria-hidden="true">
+    <div class="h-progress-bar" :style="{ transform: `scaleX(${progress})` }" />
   </div>
 </template>

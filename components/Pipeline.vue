@@ -16,7 +16,6 @@ withDefaults(
       <div
         v-motion
         class="pipe-stage"
-        data-augmented-ui="tr-clip bl-clip both"
         :initial="{ opacity: 0, y: 8 }"
         :enter="{ opacity: 1, y: 0, transition: { delay: delay + i * 110, duration: 420 } }"
       >

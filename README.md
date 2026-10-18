@@ -1,40 +1,45 @@
-# slidev-theme-lfds
+# slidev-theme-handl
 
-A retro-terminal theme for [Slidev](https://github.com/slidevjs/slidev), built
-from the design system used on [luisfuturist.com](https://luisfuturist.com):
-Roboto type, a phosphor palette, augmented (cut-corner) frames, `--foreground`
-hairlines and bracketed mono CTAs.
+A [Slidev](https://github.com/slidevjs/slidev) theme in the look of the
+[handl docs site](https://handl-lang.github.io/docs/): Source Sans 3
+type, Source Code Pro for code and labels, an oklch green ramp on a
+black/white base, square corners, hairline borders and the `>>>`
+prompt motif.
 
-- **Type** — Roboto Condensed (display), Roboto (body, set light), Roboto Mono (labels/code), Roboto Flex (numerals)
-- **Palette** — a phosphor set on black, with full light + dark themes
-- **Corners** — cut corners via [`augmented-ui`](https://augmented-ui.com): 12px on small frames, `--aug-size` (responsive 32/40/48px) on large ones
-- **Surfaces** — `--foreground` hairlines, dashed links, sharp accent focus outlines, inverted foreground blocks
+Forked from [`slidev-theme-lfds`](https://github.com/luisfuturist/slidev-theme-lfds).
+
+- **Type** — Source Sans 3 (display + body, bold headings), Source Code Pro (labels/code)
+- **Palette** — the handl green ramp (`--chart-1..5`, hue 155) with full light + dark themes
+- **Corners** — square, always: `--radius: 0`
+- **Surfaces** — `--border` hairlines, underlined primary links, inverted foreground blocks
+- **Motif** — `>>>` prompt prefixes in `--primary` on titles, CTAs and the `.prompt` utility
 
 ## Colour roles
 
-The theme follows the site's discipline — it is essentially monochrome:
+The theme follows the docs' discipline:
 
 | Token | Role |
 |---|---|
-| `--foreground` (= `--primary`) | the main colour — all text and hairlines |
+| `--foreground` | text and emphasis fills (inversion) |
+| `--primary` | the handl green — links, markers, `>>>`, bars, progress |
 | `--background-secondary` | surfaces (frames, code, table heads) |
-| `--background` | the page |
-| `--accent` (orange) | **interaction only** — focus, selection, open state |
-| `--link-primary-hover` | hovered links and CTAs |
-| `--muted` | de-emphasised text |
+| `--muted` | table stripes and quiet surfaces |
+| `--muted-foreground` | de-emphasised text |
+| `--border` / `--edge` | structural hairlines |
+| `--ring` | the bright end of the green ramp |
 
-Orange and magenta are **not** decorative. Emphasis is expressed by *inverting*
-(a `--foreground` fill), not by tinting — exactly as the site's Contact CTA does.
+Emphasis is expressed by *inverting* (a `--foreground` fill), not by
+tinting — exactly as the docs' selection does.
 
 ## Install
 
 ```bash
-npm i -D slidev-theme-lfds
+npm i -D slidev-theme-handl
 ```
 
 ```yaml
 ---
-theme: lfds
+theme: handl
 ---
 ```
 
@@ -42,41 +47,40 @@ theme: lfds
 
 | Layout | Purpose |
 |---|---|
-| `cover` | Title slide with a grid wash and display-scale title |
+| `cover` | Title slide with a `>>>` prompt over the display-scale title |
 | `intro` | Same family as `cover` |
-| `section` | Centered divider |
+| `section` | Centered divider with the `>>>` mark |
 | `statement` | Full-bleed statement at display scale |
-| `fact` | Oversized Roboto Flex numeral + mono caption |
-| `quote` | Pull quote |
+| `fact` | Oversized green numeral + mono caption |
+| `quote` | Pull quote led by `>>>` |
 | `end` | **Inverted** closing slide (foreground fill, background text) |
 
-Built-in layouts (`default`, `center`, `two-cols`, …) remain available and are
-styled by LFDS.
+Built-in layouts (`default`, `center`, `two-cols`, …) remain available
+and are styled by the theme. `default` h1s get an inline `>>>` prefix.
 
 ## Components
 
-- **`<AugFrame>`** — a panel with cut corners. Props: `inverted` (foreground
-  fill, background text), `size` (`sm` cuts top-right + bottom-left at 12px;
-  `lg` cuts every corner at `--aug-size`).
+- **`<Frame>`** — a square bordered panel. Props: `inverted` (foreground
+  fill, background text), `size` (`lg` for roomier padding).
 - **`<Kicker>`** — a mono, uppercase, letter-spaced label.
-- **`<Cta>`** — the bracketed `[ LABEL ]` treatment.
-- **`<Tag>`** — a small squared tag (inherits its colour).
-- **`<Callout>`** — an augmented (cut-corner) alert.
+- **`<Cta>`** — a mono label led by `>>>` in `--primary`.
+- **`<Tag>`** — a small squared tag in `--primary`.
+- **`<Callout>`** — a square alert with a primary left rule.
 - **`<Pipeline :stages="[…]" />`** — an animated stage flow with drawn arrows.
 - **`<Steps :items="[{ title, body }]" />`** — a numbered timeline revealed step by step.
-- **`<Bars :items="[{ label, value, display }]" />`** — animated benchmark bars.
-- **`<Stat value label />`** — a big Roboto Flex numeral with a mono caption.
+- **`<Bars :items="[{ label, value, display }]" />`** — animated bars filled with `--primary`.
+- **`<Stat value label />`** — a big numeral with a mono caption.
 
 ```md
-<AugFrame>
+<Frame>
 
 #### A framed panel
 
 <Cta>Read more</Cta>
 
-</AugFrame>
+</Frame>
 
-<AugFrame inverted size="lg">…</AugFrame>
+<Frame inverted size="lg">…</Frame>
 
 <Kicker>section 01</Kicker> <Tag>new</Tag>
 ```
@@ -85,8 +89,10 @@ styled by LFDS.
 
 Two global layers ship with the theme:
 
-- **progress bar** — pinned to the very top of the slide (`.lfds-progress`)
-- **slide pager** — `03 / 11`, bottom-right, hidden on the `cover`, `intro` and `end` layouts (`.lfds-pager`)
+- **progress bar** — pinned to the very top of the slide, filled with
+  `--primary` (`.h-progress`)
+- **slide pager** — `03 / 11`, bottom-right, hidden on `end` and backup
+  slides (`.h-pager`)
 
 Both anchor to the viewport when presenting and to each slide page when exporting.
 
@@ -102,11 +108,11 @@ backup: true
 
 ## Utilities
 
-`.link` (dashed underline) · `.cta` · `.kicker` · `.label` · `.tag` ·
-`.panel` · `.aug-frame` · `.callout` · `.invert` · `.numeral` · `.stat` ·
+`.link` · `.cta` · `.kicker` · `.label` · `.tag` · `.panel` · `.frame` ·
+`.callout` · `.invert` · `.prompt` (`>>>` prefix) · `.numeral` · `.stat` ·
 `.pipeline` · `.steps-v` · `.bars` · `.cols` / `.cols-3` · `.muted` ·
-`.mono` · `.display` · `.footnote` · `.cursor` (blinking) · `.pulse` ·
-`.swatches` / `.swatch`
+`.mono` · `.display` · `.footnote` · `.cursor` (blinking block, primary) ·
+`.pulse` · `.swatches` / `.swatch`
 
 ## Design tokens
 
@@ -114,19 +120,24 @@ All tokens live in `styles/tokens.css` and switch with `html.dark`:
 
 `--background` · `--foreground` · `--background-secondary` ·
 `--foreground-secondary` · `--primary` · `--secondary` · `--accent` ·
-`--destructive` · `--muted` · `--card` · `--border` · `--ring` · `--link-primary` ·
-`--link-primary-hover` · `--edge` (foreground hairlines) · `--edge-soft` ·
-`--aug-size` · `--blue` / `--cyan` / `--green` / `--magenta` / `--red` /
-`--yellow` / `--orange` · `--gray-1..3`
+`--destructive` · `--muted` · `--muted-foreground` · `--card` ·
+`--border` · `--ring` · `--link-primary` · `--link-primary-hover` ·
+`--edge` / `--edge-soft` (hairlines) · `--chart-1..5` (the green ramp) ·
+`--gray-1..3`
 
-They are also exposed as UnoCSS utilities, so you can style slides with the
-site's own vocabulary:
+They are also exposed as UnoCSS utilities, so you can style slides with
+the docs' own vocabulary:
 
 ```html
-<div class="border-t border-foreground hover:text-link-primary-hover font-display uppercase">
+<div class="border-t border-edge hover:text-link-primary-hover font-display uppercase">
   …
 </div>
 ```
+
+## Code highlighting
+
+`setup/shiki.ts` ports the docs site's `handlDark` theme (green keywords,
+white literals) for dark slides and `github-light` for light slides.
 
 ## Development
 
