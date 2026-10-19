@@ -12,6 +12,16 @@
   ],
   "license": "MIT",
   "author": "handl-lang",
+  "files": [
+    "layouts",
+    "components",
+    "styles",
+    "setup",
+    "global-top.vue",
+    "global-bottom.vue",
+    "uno.config.ts",
+    "example.md"
+  ],
   "homepage": "https://github.com/handl-lang/slidev-theme",
   "repository": {
     "type": "git",
