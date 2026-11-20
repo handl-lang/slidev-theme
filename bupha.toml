@@ -1,12 +1,12 @@
-# bupha.toml — committed CI manifest for handl-lang/slidev-theme.
+# bupha.toml — committed CI manifest for handl-lang/slidev-theme-handl.
 #
 # Runner is this repo's ci.sh (bun install + slidev build). Merge the
 # [[repos]] entry into the shared watcher (~/.config/bupha/bupha.toml) or
 # run: bupha watch --config bupha.toml
 
 [[repos]]
-name = "handl-lang/slidev-theme"
-dir = "/home/luis/GitHub/handl-lang/slidev-theme"
+name = "handl-lang/slidev-theme-handl"
+dir = "/home/luis/GitHub/handl-lang/slidev-theme-handl"
 branch = "refs/heads/main"
   [repos.runner]
   kind = "script"

@@ -22,10 +22,10 @@
     "uno.config.ts",
     "example.md"
   ],
-  "homepage": "https://github.com/handl-lang/slidev-theme",
+  "homepage": "https://github.com/handl-lang/slidev-theme-handl",
   "repository": {
     "type": "git",
-    "url": "https://github.com/handl-lang/slidev-theme"
+    "url": "https://github.com/handl-lang/slidev-theme-handl"
   },
   "engines": {
     "node": ">=22.12.0",

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# ci.sh — slidev-theme CI gate for the bupha shell runner.
+# ci.sh — slidev-theme-handl CI gate for the bupha shell runner.
 #
 # Slidev deck: install with bun (hoisted linker — slidev/unocss peer deps
 # do not resolve under bun's isolated layout) and produce the static
