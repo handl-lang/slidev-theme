@@ -70,14 +70,8 @@ bun run export      # export PDF
 
 ## License
 
-[MIT](LICENSE)
+MIT.
 
 ## Documentation
 
-Published site (Diátaxis): <https://handl-lang.github.io/docs/slidev-theme/>
-
-- [Reference](https://handl-lang.github.io/docs/slidev-theme/reference/) — public API surface
-- [How-to](https://handl-lang.github.io/docs/slidev-theme/how-to/) — task recipes
-- [Explanation](https://handl-lang.github.io/docs/slidev-theme/explanation/) — design and rationale
-
-Decision records live on the `project` branch under `project/adrs/`.
+<https://handl-lang.github.io/docs/slidev-theme/>
