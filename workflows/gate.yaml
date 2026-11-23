@@ -1,0 +1,100 @@
+# workflows/gate.yaml — per-push gate for handl-lang/slidev-theme-handl.
+#
+# Replaces ci.sh as the bupha/peregrin gate (ci.sh stays in the tree
+# for reference until the runner flips). Invoke:
+#
+#   GATE_REPO="$PWD" GATE_RESULTS="$PWD/.gate-results.jsonl" \
+#     peregrin campaign run workflows/gate.yaml --result .ci-result.json
+#
+# Slidev deck: install with bun (hoisted linker — slidev/unocss peer
+# deps do not resolve under bun's isolated layout) and produce the
+# static build. A broken slide/component fails the gate. Verbatim
+# port of ci.sh.
+#
+# Verdict: .ci-result.json `.conclusion` == "success".
+name: gate-slidev-theme-handl
+
+result:
+  - event: gate.pass
+    conclusion: success
+  - event: gate.fail
+    conclusion: failure
+  - event: gate.failed
+    conclusion: failure
+  - event: gate.init.failed
+    conclusion: failure
+  - event: gate.run.failed
+    conclusion: failure
+
+capabilities:
+  env:
+    - GATE_REPO
+    - GATE_RESULTS
+
+nodes:
+  # --- init: validate inputs, fresh results file --------------------
+  - id: gate.init
+    driver: shell
+    on: [start]
+    emits: [gate.due, gate.init.failed]
+    params:
+      cmd: >-
+        set -u;
+        REPO="${config.gate.repo:-${env("GATE_REPO","")}}";
+        [ -n "$REPO" ] || { echo "gate.repo is required — set GATE_REPO or config.gate.repo to an absolute checkout path"; exit 1; };
+        [ -d "$REPO" ] || { echo "no such directory: $REPO"; exit 1; };
+        RES="${config.gate.results:-${env("GATE_RESULTS","$HOME/.local/share/handl-gates/slidev-theme-handl.results.jsonl")}}";
+        mkdir -p "$(dirname "$RES")";
+        : > "$RES";
+        echo "gate-slidev-theme-handl: repo=$REPO results=$RES"
+      timeout: 60
+      emit:
+        "0": gate.due
+        default: gate.init.failed
+
+  # --- gate: ci.sh verbatim — bun install (hoisted) + build ---------
+  - id: gate.run
+    driver: shell
+    on: [gate.due]
+    emits: [gate.done, gate.failed]
+    params:
+      repo: '${config.gate.repo:-${env("GATE_REPO","")}}'
+      results: '${config.gate.results:-${env("GATE_RESULTS","$HOME/.local/share/handl-gates/slidev-theme-handl.results.jsonl")}}'
+      timeout: 1800
+      cmd: |-
+        set -uo pipefail
+        REPO="${params.repo}"
+        RESULTS="${params.results}"
+        START=$(date +%s)
+        cd "$REPO" && REPO="$(pwd)" || { echo "no such directory: ${params.repo}"; exit 1; }
+        export PATH="$HOME/.bun/bin:$HOME/.local/bin:$PATH"
+        rc=0
+        bun install --frozen-lockfile --linker=hoisted || rc=$?
+        if [ "$rc" -eq 0 ]; then bun run build || rc=$?; fi
+        if [ -n "$RESULTS" ]; then
+          esc=$(printf '%s' "$REPO" | sed 's/\\/\\\\/g; s/"/\\"/g')
+          printf '{"family":"slidev","repo":"%s","rc":%s,"secs":%s}\n' "$esc" "$rc" "$(( $(date +%s) - START ))" >> "$RESULTS" 2>/dev/null || true
+        fi
+        exit $rc
+      emit:
+        "0": gate.done
+        default: gate.failed
+
+  # --- report: terminal verdict from the results record -------------
+  - id: gate.report
+    driver: shell
+    on: [gate.done, gate.failed]
+    emits: [gate.pass, gate.fail]
+    params:
+      cmd: >-
+        set -u;
+        F="${config.gate.results:-${env("GATE_RESULTS","$HOME/.local/share/handl-gates/slidev-theme-handl.results.jsonl")}}";
+        [ -s "$F" ] || { echo "no results record — gate produced nothing"; exit 1; };
+        line=$(tail -n 1 "$F");
+        rc=$(printf '%s' "$line" | sed -n 's/.*"rc":\([0-9][0-9]*\).*/\1/p');
+        echo "gate-slidev-theme-handl verdict: $line";
+        [ "${rc:-1}" = "0" ]
+      timeout: 60
+      emit:
+        "0": gate.pass
+        default: gate.fail
