@@ -6,7 +6,7 @@
 
 [[repos]]
 name = "handl-lang/slidev-theme-handl"
-dir = "/home/luis/GitHub/handl-lang/slidev-theme-handl"
+dir = "~//GitHub/handl-lang/slidev-theme-handl"
 branch = "refs/heads/main"
   [repos.runner]
   kind = "script"
